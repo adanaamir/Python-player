@@ -4,18 +4,18 @@ from random import randint, choice
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.player_walk_1 = pygame.image.load("player.png").convert_alpha()
-        self.player_walk_2 = pygame.image.load("player_run.png").convert_alpha()
+        self.player_walk_1 = pygame.image.load("graphics/player.png").convert_alpha()
+        self.player_walk_2 = pygame.image.load("graphics/player_run.png").convert_alpha()
         self.player_walk = [self.player_walk_1, self.player_walk_2]
 
         self.player_index = 0
-        self.player_jump = pygame.image.load("player_jump.png").convert_alpha()
+        self.player_jump = pygame.image.load("graphics/player_jump.png").convert_alpha()
 
         self.image = self.player_walk[self.player_index]
         self.rect = self.image.get_rect(midbottom = (150,350)).inflate(-35,-35)  #you cant have a sprite class without slef.image and self.rect
         self.gravity = 0
 
-        self.jump_sound = pygame.mixer.Sound("jump sound.mp3")
+        self.jump_sound = pygame.mixer.Sound("audio/jump sound.mp3")
 
     def player_input(self):
         keys = pygame.key.get_pressed()
@@ -49,13 +49,13 @@ class Obstacle(pygame.sprite.Sprite):
         super().__init__()
 
         if type == "alien":
-            alien_1 = pygame.image.load("alien.png").convert_alpha()
-            alien_2 = pygame.image.load("alien_2.png").convert_alpha()
+            alien_1 = pygame.image.load("graphics/alien.png").convert_alpha()
+            alien_2 = pygame.image.load("graphics/alien_2.png").convert_alpha()
             self.frames = [alien_1, alien_2]
             y_pos = 330
         else:
-            obstacle2_1 = pygame.image.load("obst2.png").convert_alpha()
-            obstacle2_2 = pygame.image.load("obst2_2.png").convert_alpha()
+            obstacle2_1 = pygame.image.load("graphics/obst2.png").convert_alpha()
+            obstacle2_2 = pygame.image.load("graphics/obst2_2.png").convert_alpha()
             self.frames = [obstacle2_1, obstacle2_2]
             y_pos = 230
 
@@ -104,7 +104,7 @@ clock = pygame.time.Clock()
 game_active = False 
 start_time = 0
 score = 0
-bg_music = pygame.mixer.Sound("bg music.mp3")
+bg_music = pygame.mixer.Sound("audio/bg music.mp3")
 bg_music.play(loops = -1)  #-1 means forever
 
 #groups
@@ -113,14 +113,14 @@ player_c.add(Player())
 obstacle_group = pygame.sprite.Group()
 
 #creating a font
-test_font = pygame.font.Font("Pixeltype.ttf", 50)
+test_font = pygame.font.Font("font/Pixeltype.ttf", 50)
 
 #convert alpha makes ur game smooth
-sky_surface = pygame.image.load("background.png").convert()
-ground_surface = pygame.image.load("ground.png").convert_alpha()
+sky_surface = pygame.image.load("graphics/background.png").convert()
+ground_surface = pygame.image.load("graphics/ground.png").convert_alpha()
 
 #player at the intro screen
-player_intro = pygame.image.load("intro_astronaut.png").convert_alpha()
+player_intro = pygame.image.load("graphics/intro_astronaut.png").convert_alpha()
 player_intro = pygame.transform.scale(player_intro,(100,100))
 player_intro_rect = player_intro.get_rect(center = (750,60))
 
